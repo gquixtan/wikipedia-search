@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<!-- Site's meta description -->
+	<meta charset="UTF-8">
+	<meta name="description" content="Personal Portafolio">
+	<meta name="keywords" content="html, css, personal bio">
+	<meta name="author" content="Gabriela Quixtan">
+
+	<!-- This links to the Bootstrap CSS CDN -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- This links to my CSS -->  
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<!-- This links to jquery --> 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<!-- This links to animation -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">	
+
+    <!-- This links to google fonts  -->
+   <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+   <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+
+    <script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#search").click(function()(
+			var searchWord = $("#searchWord").val();
+			var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchWord + "&format=json&callback=?";
+		$.json({
+		 type: 'GET',
+		 url: url,
+		 async: false,
+		 dataType: "json",
+		 succsees: function(data){
+		 	// console.log(data[0][1]);
+		 	// console.log(data[2][0]);
+		 	// console.log(data[3][0]);
+		 	$("#output").pretend(data[1][0]);
+		 },
+		 error: function(errorMessage){
+		 	alert("Error");
+		 }
+
+			});
+
+		});
+	});	
+
+	</script>
+
+<head>
+	<title>Wikipedia Search Project</title>
+</head>
+<body> 
+<div class="container">
+<h1>Wikipedia's API Search</h1>
+	<a href="https://en.wikipedia.org/wiki/Special:Random" target="blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Wikipedia_logo_puzzle_globe_spins_horizontally_and_vertically%2C_revealing_the_contents_of_all_of_its_puzzle_pieces_%284K_resolution%29_%28VP9%29.webm/220px--Wikipedia_logo_puzzle_globe_spins_horizontally_and_vertically%2C_revealing_the_contents_of_all_of_its_puzzle_pieces_%284K_resolution%29_%28VP9%29.webm.jpg" alt="wikipedia's logo"></a>
+	 <input class="form-control" id="searchWord" placeholder="Ask me anything...">
+	 <button class="btn btn-primary" type="button" id="search">SUBMIT</button>
+	 <ul id="output">
+	 	
+	 </ul>
+	
+</div>
+</body>
+</html>
